@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main role="main">
+
+        <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                {% for dog in dogs.all %}
+                
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                    
+                            <img src="{{ dog.get_first_image.image.url }}", <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#55595c"/></svg>
+
+                            <div class="card-body">
+                                <p class="card-text">Nev: {{ dog.name }}</p>
+                                <p class="card-text">Fajta: {{ dog.breed }}</p>
+                                <p class="card-text">Szuletesi datum: {{ dog.birth_year }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" disabled class="btn btn-sm btn-outline-secondary">Orokbefogadva</button>
+                                </div>
+                                <small class="text-muted">Orokbeadas datuma: {{ dog.adopt_date_pretty }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- If we reach 3, create a new row -->
+                    {% if forloop.counter|divisibleby:3 %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#" style="color:black; font-size:15px;">
+                    Ugras a lap tetjere
+                </a>
+            </p>
+            <p>&copy; Kamilla Kiss</p>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block js-foot %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% endblock %}

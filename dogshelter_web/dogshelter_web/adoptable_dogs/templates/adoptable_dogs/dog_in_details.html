@@ -1,0 +1,74 @@
+﻿{% extends 'base.html' %}
+{% block content %}
+    <style>
+        #dog_container {
+            margin-top: 100px;
+        }
+        #dog_details {
+            margin-right: 100px;
+            margin-left: 100px;
+        }
+        #dog_images {
+            width: 400px;
+            height: 300px;
+        }
+        #image {
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+
+    <div class="container" id="dog_container">
+        <div class="row" id="dog_details">              
+            <div class="card mb-4 shadow-sm">                  
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" id="dog_images">
+                        {% for image in dog.dogimages_set.all %}
+                            <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                                <img class="d-block w-100" id="image" src="{{ image.image.url }}">
+                            </div>
+                        {% endfor %}           
+
+                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Név: {{ dog.name }}</p>
+                <p class="card-text">Fajta: {{ dog.breed }}</p>
+                <p class="card-text">Születési dátum: {{ dog.birth_year }}</p>
+            </div>
+        </div>
+        <div class="row" id="dog_details">
+            <div class="card-body">
+                <p class="card-text">{{ dog.body }}</p>
+                <p class="card-text">Felvétel: {{ dog.income_date_pretty }}</p>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Örökbefogadom</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js-foot %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+	        $("#myCarousel").carousel({
+		        interval : false
+	        });
+        });
+    </script>
+{% endblock %}
