@@ -3,6 +3,13 @@
 
 {% block content %}
 
+  <style>
+      #advertisement {
+          height: 500px;
+          width: 300px;
+      }
+  </style>
+
   <head>
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -52,31 +59,37 @@
     </div>
 
     <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8 blog-main">
-          <h3 class="pb-4 mb-4 font-italic border-bottom">
-            Hireink
-          </h3>
+      
+          <div class="row">
+            <div class="col-md-8 blog-main">
+              <h3 class="pb-4 mb-4 font-italic">
+                Hireink
+              </h3>
 
-          <div class="blog-post">
-            <h2 class="blog-post-title">{{ news.all.0.title }}</h2>
-            <p class="blog-post-meta">{{ news.all.0.pub_date_pretty }} by {{ news.all.0.publisher }}</p>
+              {% for item in news %}
+                  <hr>
+                  <div class="blog-post">
+                    <h2 class="blog-post-title">{{ item.title }}</h2>
+                    <p class="blog-post-meta">{{ item.pub_date_pretty }} by {{ item.publisher }}</p>
 
-            {% if news.all.0.heading %}
-                <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-                <hr>
-            {% endif %}
+                    {% if item.heading %}
+                        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+                    {% endif %}
 
-            <p>{{ news.all.0.body }}</p>
-          </div><!-- /.blog-post -->
+                    <p>{{ item.body }}</p>
+                  </div><!-- /.blog-post -->
+              {% endfor %}
 
-        </div><!-- /.blog-main -->
+            </div><!-- /.blog-main -->
 
         <aside class="col-md-4 blog-sidebar">
-          <!-- Marketing ads -->
+          <div class="container">
+              <img src="{{ news.all.2.image.url }}" id="advertisement"/>
+          </div>
         </aside><!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
+
 
     </main><!-- /.container -->
 

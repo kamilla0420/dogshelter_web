@@ -40,38 +40,78 @@
           font-size: 3.5rem;
         }
       }
+
+      body {
+          margin: 0;
+      }
+
+      #emblem {
+          background-color: #f1f1f1;
+          padding: 30px;
+          text-align: center;
+      }
+
+      #navigationbar {
+          overflow: hidden;
+          background-color: #f1f1f1;
+      }
+
+      #navigationbar a:hover {
+          background-color: antiquewhite;
+          color: black;
+      }
+
+      #navigationbar_content {
+            margin-left: 50px;
+            margin-right: 50px;
+      }
+
+      #content {
+          padding: 16px;
+      }
+
+      .sticky {
+          position: fixed;
+          top: 0;
+          z-index: 150;
+          width: 100%;
+      }
+
+      .sticky + #content {
+          padding-top: 60px;
+      }
+
     </style>
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'base.css' %}" />
 
   </head>
+
   <body>
-    <div class="container">
-      <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
+    <header class="blog-header py-3" id="emblem">
+    <div class="row flex-nowrap justify-content-between align-items-center">
           
-          <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#">Zemplén Gazdátlan Állatiért Alapitvany kutyaotthona</a>
-          </div>
-          
+        <div class="col-4 text-center">
+        <a class="blog-header-logo text-dark" href="#">Zemplén Gazdátlan Állatiért Alapitvany kutyaotthona</a>
         </div>
-      </header>
-
-      <div class="nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between">
-          <a class="p-2 text-muted" href="#introduction">Bemutatkozás</a>
-          <a class="p-2 text-muted" href="#adoptable_dogs">Örökbefogadható</a>
-          <a class="p-2 text-muted" href="{% url 'adopted_dogs' %}">Örökbefogadottak</a>
-          <a class="p-2 text-muted" href="{% url 'news' %}">Hirek</a>
-          <a class="p-2 text-muted" href="{% url 'gallery' %}">Galéria</a>
-          <a class="p-2 text-muted" href="{% url 'news' %}">Történetek</a>
-          <a class="p-2 text-muted" href="{% url 'contact' %}">Kapcsolat</a>
-        </nav>
-      </div>   
+          
     </div>
+    </header>
 
-<main role="main" class="container">
+    <div id="navigationbar">
+        <nav class="nav d-flex justify-content-between" id="navigationbar_content">
+            <a class="p-2 text-muted" href="{% url 'home' %}#introduction">Bemutatkozás</a>
+            <a class="p-2 text-muted" href="{% url 'home' %}#adoptable_dogs">Örökbefogadható</a>
+            <a class="p-2 text-muted" href="{% url 'adopted_dogs' %}">Örökbefogadottak</a>
+            <a class="p-2 text-muted" href="{% url 'news' %}">Hirek</a>
+            <a class="p-2 text-muted" href="{% url 'gallery' %}">Galéria</a>
+            <a class="p-2 text-muted" href="{% url 'news' %}">Történetek</a>
+            <a class="p-2 text-muted" href="{% url 'contact' %}">Kapcsolat</a>
+        </nav>
+    </div>   
+
+<main role="main" class="container" id="content">
 
     {% block content %}
     {% endblock %}
@@ -84,8 +124,23 @@
   </p>
 </footer>
 
-    {% block js-foot %}
-    {% endblock js-foot %}
+{% block js-foot %}
+{% endblock js-foot %}
+
+<script>
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navigationbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+        } else {
+        navbar.classList.remove("sticky");
+        }
+    }
+</script>
 
 </body>
 </html>
