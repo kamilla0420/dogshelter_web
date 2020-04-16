@@ -14,5 +14,5 @@ def news(request):
     return render(request, 'general/news.html',{'news':news})
 
 def stories(request):
-    stories = Story.objects
+    stories = Story.objects.order_by('-pub_date')
     return render(request, 'general/stories.html',{'stories':stories})

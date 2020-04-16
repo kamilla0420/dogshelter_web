@@ -13,8 +13,6 @@
   <head>
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet">
   </head>
 
   <body>
@@ -24,7 +22,7 @@
         <div class="col-md-6 px-0">
           <h1 class="display-4 font-italic">{{ news.all.0.title }}</h1>
           <p class="lead my-3">{{ news.all.0.summary }}...</p>
-          <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Olvass tovabb</a></p>
+          <p class="lead mb-0"><a href="{% url 'news' %}#{{news.all.0.id}}" class="text-white font-weight-bold">Olvass tovabb</a></p>
         </div>
       </div>
 
@@ -35,11 +33,10 @@
               <h3 class="mb-0">{{ news.all.1.title }}</h3>
               <div class="mb-1 text-muted">{{ news.all.1.pub_date_pretty }}</div>
               <p class="card-text mb-auto">{{ news.all.1.small_summary }}</p>
-              <a href="#" class="stretched-link">Olvass tovabb</a>
+              <a href="{% url 'news' %}#{{news.all.1.id}}" class="stretched-link">Olvass tovabb</a>
             </div>
             <div class="col-auto d-none d-lg-block">
-              <img src="{{ news.all.1.image.url }}", <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" </svg>
-            </div>
+              <img src="{{ news.all.1.image.url }}" class="bd-placeholder-img" width="200" height="250"/>            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -48,10 +45,10 @@
               <h3 class="mb-0">{{ news.all.2.title }}</h3>
               <div class="mb-1 text-muted">{{ news.all.2.pub_date_pretty }}</div>
               <p class="mb-auto">{{ news.all.2.small_summary }}</p>
-              <a href="#" class="stretched-link">Olvass tovabb</a>
+              <a href="{% url 'news' %}#{{news.all.2.id}}" class="stretched-link">Olvass tovabb</a>
             </div>
             <div class="col-auto d-none d-lg-block">
-              <img src="{{ news.all.2.image.url }}", <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" <rect width="100%" height="100%" fill="#55595c"/></svg>
+              <img src="{{ news.all.2.image.url }}" class="bd-placeholder-img" width="200" height="250"/>
             </div>
           </div>
         </div>
@@ -67,7 +64,7 @@
               </h3>
 
               {% for item in news %}
-                  <hr>
+                  <hr  id="{{ item.id }}">
                   <div class="blog-post">
                     <h2 class="blog-post-title">{{ item.title }}</h2>
                     <p class="blog-post-meta">{{ item.pub_date_pretty }} by {{ item.publisher }}</p>

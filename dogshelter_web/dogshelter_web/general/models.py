@@ -31,8 +31,15 @@ class Story(models.Model):
     title = models.CharField(max_length=100)
     pub_date = models.DateField()
     body = models.TextField()
-    image = models.ImageField(upload_to='images/')
+    main_image = models.ImageField(upload_to='images/')
     publisher = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def small_summary(self):
+        return self.body[:60]
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%Y. %b. %e.')
+
+class StoryImages(models.Model):
+    story = models.ForeignKey(Story, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/')
