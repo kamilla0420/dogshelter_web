@@ -1,4 +1,17 @@
 ﻿{% extends 'base.html' %}
+{% load static %}
+
+<style>
+
+    .incorrect-inputbox {
+        background-color: red;
+    }
+
+    .correct-inputbox {
+        background-color: forestgreen;
+    }
+
+</style>
 {% block content %}
 
 <div class="container">
@@ -66,7 +79,7 @@
 
         <div class="mb-3">
           <label for="message">Uzenet</label>
-          <textarea id="message" rows="4" class="form-control" cols="50" form="usrform" required>Irja ide uzenetet!</textarea>
+          <textarea id="message" rows="4" class="form-control" cols="50" form="usrform" required placeholder="Irja ide uzenetet!"></textarea>
           <div class="invalid-feedback">
             Adjon meg egy uzenetet!
           </div>
@@ -87,24 +100,91 @@
 {% block js-foot %}
 
 <script>
-    function checkName() {
-        var firstName = document.getElementById("firstName").value; //ebben szam nem lehet
-        var lastName = document.getElementById("lastName").value;
-        var patt = /[0-9]/;
+    var invalid = document.getElementsByClassName("invalid-feedback");
+    var inputBox = document.getElementsByClassName("form-control");
 
-        if (firstName == "" || firstName.match(patt) || lastName == "" || lastName.match(patt)) {
-            console.log("oh no");
-            var invalid = document.getElementsByClassName("invalid-feedback");
-            invalid[0].style.visibility = 'visible';
-        }
+    function styleIncorrectInput(index, input) {
+        invalid[index].style.display = "block";
+        inputBox[index].style.borderColor = "red";
+        //inputBox[index].classList.add("incorrect-inputbox"); //TODO: add class with incorrect png in the background
+        //inputBox[index].classList.remove("correct-inputbox");
     }
-    function sendMessage() {       
-        var emailAddress = document.getElementById("email"); //ennek ervenyesnek kell lennie @, .valami
-        var message = document.getElementById("message");
-        var checkBox = document.getElementById("copyMessage");
-        console.log("send");
-        checkName();
+
+    function styleCorrectInput(index) {
+        invalid[index].style.display = "none";
+        inputBox[index].style.borderColor = "green";
+        //inputBox.classList.remove("incorrect-inputbox");
+        //inputBox.classList.add("correct-inputbox");
+    }
+
+    function checkName() {
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var patt = /^[a-zA-Z]+$/;
+        var isFirstNameValid = false;
+        var isLastNameValid = false;
+
+        if (firstName == "" || !firstName.match(patt)) {
+            styleIncorrectInput(0, firstName);
+            isFirstNameValid = false;
         }
+        else {
+            styleCorrectInput(0, firstName);
+            isFirstNameValid = true;
+        }
+
+        if (lastName == "" || !lastName.match(patt)) {
+            styleIncorrectInput(1, isLastNameValid);
+            isLastNameValid = false;
+        }
+         else {
+            styleCorrectInput(1, isLastNameValid);
+            isLastNameValid = true;
+        }
+
+        return isFirstNameValid && isLastNameValid;
+    }
+
+    function checkEmailAddress() {
+        var emailAddress = document.getElementById("email").value;
+        var patt = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/;
+        var isValid = true;
+
+        if (emailAddress == "" || !emailAddress.match(patt)) {
+            styleIncorrectInput(2, emailAddress);
+            isValid = false;
+        }
+        else {
+            styleCorrectInput(2, emailAddress);
+            isValid = true;
+        }
+
+        return isValid;
+    }
+
+    function checkMessage() {
+        var message = document.getElementById("message").value;
+        var isValid = true;
+
+        if (message == "") {
+            styleIncorrectInput(3, message);
+            isValid = false;
+        }
+        else {
+            styleCorrectInput(3, message);
+            isValid = true;
+        }
+
+        return isValid;
+    }
+
+    function sendMessage() {       
+        var checkBox = document.getElementById("copyMessage");
+
+        checkName();
+        checkEmailAddress();
+        checkMessage();
+    }
 </script>
 
 {% endblock %}

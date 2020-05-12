@@ -8,8 +8,8 @@
     }
 
 </style>
- <div class="container marketing" id="stories-headline">
 
+ <div class="container" id="stories-headline">
     <!-- Three columns of text -->
     <div class="row">
       <div class="col-lg-4">
@@ -31,8 +31,9 @@
         <p><a class="btn btn-secondary" href="{% url 'stories' %}#{{stories.all.2.id}}" role="button">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
+ </div>
 
-
+ <div class="container marketing">
     <!-- Stories -->
 
     {% for story in stories %}
@@ -49,7 +50,7 @@
                 <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
                 </div>
             </div>
-        {% elif %}
+        {% else %}
             <div class="row featurette" id="{{story.id}}">
               <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">{{ story.title }}</h2>

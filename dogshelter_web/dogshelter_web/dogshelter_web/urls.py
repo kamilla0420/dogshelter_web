@@ -18,13 +18,11 @@ from django.urls import path, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from adoptable_dogs import views as adoptable
-from adopted_dogs import views as adopted
+from dogs import views as dogs
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('general/', include('general.urls')),
-    path('adoptable_dogs/', include('adoptable_dogs.urls')),
-    path('', adoptable.home, name='home'),
-    path('adopted_dogs/', adopted.adopted_dogs, name='adopted_dogs'),
+    path('dogs/', include('dogs.urls')),
+    path('', dogs.home, name='home'),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

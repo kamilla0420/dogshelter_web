@@ -32,21 +32,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="adoptable_dogs\admin.py" />
-    <Compile Include="adoptable_dogs\apps.py" />
-    <Compile Include="adoptable_dogs\migrations\__init__.py" />
-    <Compile Include="adoptable_dogs\models.py" />
-    <Compile Include="adoptable_dogs\tests.py" />
-    <Compile Include="adoptable_dogs\urls.py" />
-    <Compile Include="adoptable_dogs\views.py" />
-    <Compile Include="adoptable_dogs\__init__.py" />
-    <Compile Include="adopted_dogs\admin.py" />
-    <Compile Include="adopted_dogs\apps.py" />
-    <Compile Include="adopted_dogs\migrations\__init__.py" />
-    <Compile Include="adopted_dogs\models.py" />
-    <Compile Include="adopted_dogs\tests.py" />
-    <Compile Include="adopted_dogs\views.py" />
-    <Compile Include="adopted_dogs\__init__.py" />
+    <Compile Include="dogs\admin.py" />
+    <Compile Include="dogs\apps.py" />
+    <Compile Include="dogs\migrations\__init__.py" />
+    <Compile Include="dogs\models.py" />
+    <Compile Include="dogs\tests.py" />
+    <Compile Include="dogs\urls.py" />
+    <Compile Include="dogs\views.py" />
+    <Compile Include="dogs\__init__.py" />
     <Compile Include="general\admin.py" />
     <Compile Include="general\apps.py" />
     <Compile Include="general\migrations\__init__.py" />
@@ -62,14 +55,10 @@
     <Compile Include="dogshelter_web\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="adoptable_dogs\" />
-    <Folder Include="adoptable_dogs\migrations\" />
-    <Folder Include="adoptable_dogs\templates\" />
-    <Folder Include="adoptable_dogs\templates\adoptable_dogs\" />
-    <Folder Include="adopted_dogs\" />
-    <Folder Include="adopted_dogs\migrations\" />
-    <Folder Include="adopted_dogs\templates\" />
-    <Folder Include="adopted_dogs\templates\adopted_dogs\" />
+    <Folder Include="dogs\" />
+    <Folder Include="dogs\migrations\" />
+    <Folder Include="dogs\templates\" />
+    <Folder Include="dogs\templates\dogs\" />
     <Folder Include="dogshelter_web\" />
     <Folder Include="dogshelter_web\templates\" />
     <Folder Include="dogshelter_web\static\" />
@@ -79,9 +68,9 @@
     <Folder Include="general\templates\general\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="adoptable_dogs\templates\adoptable_dogs\dog_in_details.html" />
-    <Content Include="adoptable_dogs\templates\adoptable_dogs\home.html" />
-    <Content Include="adopted_dogs\templates\adopted_dogs\adopted_dogs.html" />
+    <Content Include="dogs\templates\dogs\dog_in_details.html" />
+    <Content Include="dogs\templates\dogs\home.html" />
+    <Content Include="dogs\templates\dogs\adopted_dogs.html" />
     <Content Include="dogshelter_web\templates\base.html" />
     <Content Include="general\templates\general\contact.html" />
     <Content Include="general\templates\general\gallery.html" />
